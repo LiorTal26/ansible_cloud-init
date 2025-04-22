@@ -21,7 +21,7 @@ This project provides an Ansible playbook to configure AWS instances using Cloud
 3. **Run the Playbook**  
     Execute the Ansible playbook to configure the AWS instance:
     ```bash
-    ansible-playbook -i inventory playbook.yml
+    ansible-playbook -i inventory.ini playbook.yml
     ```
 
 ## Prerequisites
