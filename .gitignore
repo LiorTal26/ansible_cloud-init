@@ -1,0 +1,8 @@
+# Local environment files
+/.env
+.env*
+
+# Secret Ansible var files
+*_vars.yml
+
+

@@ -1,0 +1,8 @@
+#cloud-config
+# runcmd:
+#   - echo "Hello World from Cloud-Init!"
+#   - bash /opt/update-dns.sh
+
+bootcmd:
+  - [ cloud-init-per, always, dnsupdate, /opt/update-dns.sh ]
+  - echo "hello from boot cmd cloud"

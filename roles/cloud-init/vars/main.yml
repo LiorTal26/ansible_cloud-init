@@ -1,0 +1,7 @@
+#SPDX-License-Identifier: MIT-0
+---
+# vars file for cloud-init
+
+aws_instance_id: i-0351d97e5d0dc85e8
+
+aws_local_hostname: ip-172-30-101-82

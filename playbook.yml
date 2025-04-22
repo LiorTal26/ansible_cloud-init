@@ -1,0 +1,5 @@
+- name: cloud-init update dns setup
+  hosts: servers
+  become: true
+  roles:
+    - cloud-init

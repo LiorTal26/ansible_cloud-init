@@ -1,0 +1,52 @@
+---
+    - name: Copy cloud-init-update-dns-aws.sh to /opt/update_dns.sh
+      copy:
+        src: "{{ playbook_dir }}/cloud-init-update-dns-aws.sh"
+        dest: /opt/update_dns.sh
+        mode: '0755'
+
+    - name: create /var/lib/cloud/seed/nocloud directory
+      file: 
+        path: "/var/lib/cloud/seed/nocloud"
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+
+
+    - name: create file user-data
+      file: 
+        path: "/var/lib/cloud/seed/nocloud/user-data"
+        state: touch
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: create file meta-data
+      file: 
+        path: "/var/lib/cloud/seed/nocloud/meta-data"
+        state: touch
+        owner: root
+        group: root
+        mode: '0644'
+
+
+    - name: add info to file user-data
+      copy:
+        content: |
+          #cloud-config
+          bootcmd:
+            - [ cloud-init-per, always, dnsupdate, /opt/update_dns.sh ]
+            - echo "hello from boot cmd cloud"
+        dest: "/var/lib/cloud/seed/nocloud/user-data"
+        mode: '0644'
+    
+    - name: add info to  meta-data file
+      copy:
+        content: |
+          instance-id: {{ aws_instance_id }}
+          local-hostname: {{ aws_local_hostname }}
+        dest: "/var/lib/cloud/seed/nocloud/meta-data"
+        mode: '0644'
+  
